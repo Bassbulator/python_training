@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import pytest
-from fixtire_contact import ApplicationContact
+from application import ApplicationContact
 from contact import Contact
 
 @pytest.fixture
