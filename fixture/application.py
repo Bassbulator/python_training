@@ -1,23 +1,15 @@
 from selenium.webdriver.firefox.webdriver import WebDriver
 from selenium.webdriver.support.select import Select
+from fixture.session import SessionHelper
 
 class Application:
     def __init__(self):
         self.wd = WebDriver()
         self.wd.implicitly_wait(60)
-
+        self.session = SessionHelper(self)
     def open_homepage(self):
         wd =self.wd
         wd.get("http://localhost/addressbook/")
-
-    def login(self, username, password):
-        wd = self.wd
-        wd.find_element_by_name("user").click()
-        wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys(username)
-        wd.find_element_by_name("pass").clear()
-        wd.find_element_by_name("pass").send_keys(password)
-        wd.find_element_by_id("LoginForm").submit()
 
     def open_groups_page(self):
         wd = self.wd
@@ -48,10 +40,6 @@ class Application:
     def return_to_groups_page(self):
         wd = self.wd
         wd.find_element_by_link_text("group page").click()
-
-    def logout(self):
-        wd = self.wd
-        wd.find_element_by_link_text("Logout").click()
 
     def close(self):
         self.wd.quit()
