@@ -23,6 +23,14 @@ class GroupHelper:
         # submit_group_creation
         wd.find_element_by_name("submit").click()
 
+    def delete_first_group(self):
+        wd = self.app.wd
+        # open groups page
+        wd.find_element_by_link_text("groups").click()
+        # select first group
+        wd.find_element_by_name("selected[]").click()
+        # submit delete
+        wd.find_element_by_name("delete").click()
 
     def return_to_groups_page(self):
         wd = self.app.wd
