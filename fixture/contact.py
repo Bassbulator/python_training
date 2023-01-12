@@ -55,9 +55,9 @@ class ContactHelper:
         Alert(wd).accept()
 
 
-    def edit_contact(self, contact):
+    def edit_first_contact(self, contact):
         wd = self.app.wd
-        wd.find_element_by_xpath("//a[@href='edit.php?id=3']").click()
+        wd.find_element_by_xpath("/html/body/div/div[4]/form[2]/table/tbody/tr[2]/td[8]/a").click()
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys(contact.firstname)
@@ -88,4 +88,3 @@ class ContactHelper:
     def return_homepage(self):
         wd = self.app.wd
         wd.find_element_by_link_text("home page").click()
-        #wd.find_element(By.LINK_TEXT, value="home page")
