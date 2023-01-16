@@ -44,7 +44,6 @@ class GroupHelper:
         self.fill_group_from(new_group_data)
         # submit editing form
         wd.find_element_by_name("update").click()
-        self.return_to_groups_page()
 
     def fill_group_from(self, group):
         wd = self.app.wd
