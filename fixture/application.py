@@ -20,9 +20,8 @@ class Application:
             return False
 
     def open_homepage(self):
-        wd =self.wd
+        wd = self.wd
         wd.get("http://localhost/addressbook/")
-
 
     def close(self):
         self.wd.quit()

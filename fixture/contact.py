@@ -14,6 +14,7 @@ class ContactHelper:
         self.fill_contact_form(contact)
         # click by "enter" button
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+        self.return_homepage()
 
     def fill_contact_form(self, contact):
         wd = self.app.wd
@@ -48,6 +49,7 @@ class ContactHelper:
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         # accept alert OK
         Alert(wd).accept()
+        self.return_homepage()
 
     def edit_first_contact(self, new_contact_data):
         wd = self.app.wd
@@ -57,6 +59,7 @@ class ContactHelper:
         self.fill_contact_form(new_contact_data)
         # click by confirm button
         wd.find_element_by_xpath("//input[@name='update']").click()
+        self.return_homepage()
 
     def change_field_value(self, field_name, text):
         wd = self.app.wd
@@ -68,3 +71,8 @@ class ContactHelper:
     def return_homepage(self):
         wd = self.app.wd
         wd.find_element_by_link_text("home page").click()
+
+    def count(self):
+        wd = self.app.wd
+        self.app.open_homepage()
+        return len(wd.find_element_by_xpath("/html/body/div/div[4]/form[2]/table/tbody/tr[]/td[]/a"))
