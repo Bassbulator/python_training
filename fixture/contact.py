@@ -55,7 +55,7 @@ class ContactHelper:
         wd = self.app.wd
         self.open_contact_page()
         # click by edit button
-        wd.find_element_by_xpath("/html/body/div/div[4]/form[2]/table/tbody/tr[2]/td[8]/a").click()
+        wd.find_element_by_xpath("/html/body/div/div[4]/form[2]/table/tbody/tr/td/a").click()
         self.fill_contact_form(new_contact_data)
         # click by confirm button
         wd.find_element_by_xpath("//input[@name='update']").click()
@@ -74,5 +74,5 @@ class ContactHelper:
 
     def count(self):
         wd = self.app.wd
-        self.app.open_homepage()
+        wd.find_element_by_link_text("home page").click()
         return len(wd.find_element_by_xpath("/html/body/div/div[4]/form[2]/table/tbody/tr[]/td[]/a"))

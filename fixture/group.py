@@ -7,8 +7,9 @@ class GroupHelper:
         wd = self.app.wd
         # open groups page
         self.open_groups_page()
-        self.fill_group_form(group)
         # submit_group_creation
+        wd.find_element_by_name("new").click()
+        self.fill_group_form(group)
         wd.find_element_by_name("submit").click()
         self.return_to_groups_page()
 
