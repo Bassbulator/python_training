@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.alert import Alert
+from model.contact import Contact
 
 
 class ContactHelper:
@@ -40,7 +41,8 @@ class ContactHelper:
 
     def open_contact_page(self):
         wd = self.app.wd
-        if not (wd.current_url.endswith("http://localhost/addressbook/") and len(wd.find_elements_by_name("MainForm")) > 0):
+        if not (wd.current_url.endswith("http://localhost/addressbook/") and len(
+                wd.find_elements_by_name("MainForm")) > 0):
             wd.find_element_by_link_text("home").click()
 
     def delete_first_contact(self):
@@ -78,3 +80,14 @@ class ContactHelper:
         wd = self.app.wd
         self.open_contact_page()
         return len(wd.find_elements_by_xpath("/html/body/div/div[4]/form[2]/table/tbody/tr/td/a"))
+
+    def get_contact_list(self):
+        wd = self.app.wd
+        self.app.open_contact_page()
+        contact_list = []
+        for element in wd.find_elements_by_name('entry'):
+            index = element.find_element_by_name("selected[]").get_attribute('value')
+            f_name = element.find_element_by_xpath(".//td[3]").text
+            l_name = element.find_element_by_xpath(".//td[2]").text
+            contact_list.append(Contact(id=index, firstname=f_name, lastname=l_name))
+        return contact_list

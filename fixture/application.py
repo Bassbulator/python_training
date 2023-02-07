@@ -20,7 +20,8 @@ class Application:
 
     def open_homepage(self):
         wd = self.wd
-        wd.get("http://localhost/addressbook/")
+        if not wd.current_url.endswith('addressbook/'):
+            wd.get("http://localhost/addressbook/")
 
     def close(self):
         self.wd.quit()
