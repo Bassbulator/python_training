@@ -1,4 +1,5 @@
 from model.contact import Contact
+from random import randrange
 
 
 def test_edit_contact_firstname(app):
@@ -7,11 +8,12 @@ def test_edit_contact_firstname(app):
                                             company="qwerty", address="qwerty", mobile="12345678", email="qwerty@mail.ru"))
     contact = Contact(firstname="New name")
     old_contacts = app.contact.get_contact_list()
-    contact.id = old_contacts[0].id
-    app.contact.edit_first_contact(contact)
+    index = randrange(len(old_contacts))
+    contact.id = old_contacts[index].id
+    app.contact.edit_contact_by_index(index, contact)
     assert len(old_contacts) == app.contact.count()
     mod_contacts = app.contact.get_contact_list()
-    old_contacts[0] = contact
+    old_contacts[index] = contact
     assert sorted(old_contacts, key=Contact.id_or_max) == sorted(mod_contacts, key=Contact.id_or_max)
 
 def test_edit_contact_lastname(app):
@@ -21,11 +23,12 @@ def test_edit_contact_lastname(app):
                     company="qwerty", address="qwerty", mobile="12345678", email="qwerty@mail.ru"))
     contact = Contact(lastname="New name")
     old_contacts = app.contact.get_contact_list()
-    contact.id = old_contacts[0].id
-    app.contact.edit_first_contact(contact)
+    index = randrange(len(old_contacts))
+    contact.id = old_contacts[index].id
+    app.contact.edit_contact_by_index(index, contact)
     assert len(old_contacts) == app.contact.count()
     mod_contacts = app.contact.get_contact_list()
-    old_contacts[0] = contact
+    old_contacts[index] = contact
     assert sorted(old_contacts, key=Contact.id_or_max) == sorted(mod_contacts, key=Contact.id_or_max)
 
 
@@ -36,9 +39,10 @@ def test_edit_contact_middlename(app):
                     company="qwerty", address="qwerty", mobile="12345678", email="qwerty@mail.ru"))
     contact = Contact(middlename="New name")
     old_contacts = app.contact.get_contact_list()
-    contact.id = old_contacts[0].id
-    app.contact.edit_first_contact(contact)
+    index = randrange(len(old_contacts))
+    contact.id = old_contacts[index].id
+    app.contact.edit_contact_by_index(index, contact)
     assert len(old_contacts) == app.contact.count()
     mod_contacts = app.contact.get_contact_list()
-    old_contacts[0] = contact
+    old_contacts[index] = contact
     assert sorted(old_contacts, key=Contact.id_or_max) == sorted(mod_contacts, key=Contact.id_or_max)
