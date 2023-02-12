@@ -10,7 +10,7 @@ class ContactHelper:
 
     def add_new_contact(self, contact):
         wd = self.app.wd
-        self.open_contact_page()
+        self.app.open_homepage()
         # Click by link "add new"
         wd.find_element_by_link_text("add new").click()
         self.fill_contact_form(contact)
@@ -52,7 +52,7 @@ class ContactHelper:
 
     def delete_contact_by_index(self, index):
         wd = self.app.wd
-        self.open_contact_page()
+        self.app.open_homepage()
         wd.find_elements_by_name("selected[]")[index].click()
         # confirm delete
         wd.find_element_by_xpath("//input[@value='Delete']").click()
@@ -67,7 +67,7 @@ class ContactHelper:
 
     def edit_contact_by_index(self, new_contact_data, index):
         wd = self.app.wd
-        self.open_contact_page()
+        self.app.open_homepage()
         self.select_contact_by_index(index)
         self.fill_contact_form(new_contact_data)
         # click by confirm button
@@ -77,7 +77,7 @@ class ContactHelper:
 
     def select_contact_by_index(self, index):
         wd = self.app.wd
-        wd.find_element_by_xpath("/html/body/div/div[4]/form[2]/table/tbody/tr[2]/td[8]/a")[index].click()
+        wd.find_elements_by_xpath("//img[@alt='Edit']")[index].click()
 
     def change_field_value(self, field_name, text):
         wd = self.app.wd
@@ -101,7 +101,7 @@ class ContactHelper:
     def get_contact_list(self):
         if self.contact_cache is None:
             wd = self.app.wd
-            self.app.open_contact_page()
+            self.app.open_homepage()
             self.contact_cache = []
             for element in wd.find_elements_by_name('entry'):
                 index = element.find_element_by_name("selected[]").get_attribute('value')
