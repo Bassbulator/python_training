@@ -61,15 +61,15 @@ class ContactHelper:
         self.return_homepage()
         self.contact_cache = None
 
-    def edit_first_contact(self, new_contact_data):
+    def edit_first_contact(self, contact):
         wd = self.app.wd
-        self.edit_contact_by_index(0, new_contact_data)
+        self.edit_contact_by_index(0, contact)
 
-    def edit_contact_by_index(self, new_contact_data, index):
+    def edit_contact_by_index(self, contact, index):
         wd = self.app.wd
         self.app.open_homepage()
         self.select_contact_by_index(index)
-        self.fill_contact_form(new_contact_data)
+        self.fill_contact_form(contact)
         # click by confirm button
         wd.find_element_by_name("update").click()
         self.return_homepage()
@@ -93,8 +93,8 @@ class ContactHelper:
 
     def count(self):
         wd = self.app.wd
-        self.open_contact_page()
-        return len(wd.find_elements_by_xpath("/html/body/div/div[4]/form[2]/table/tbody/tr/td/a"))
+        self.app.open_homepage()
+        return len(wd.find_elements_by_name('selected[]'))
 
     contact_cache = None
 
