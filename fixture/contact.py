@@ -57,6 +57,7 @@ class ContactHelper:
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         # accept alert OK
         Alert(wd).accept()
+        wd.find_element_by_css_selector("div.msgbox")
         self.return_homepage()
         self.contact_cache = None
 
