@@ -17,7 +17,7 @@ testdata = [Contact(firstname=random_string('firstname', 10),
                     company=random_string('company', 10),
                     address=random_string('address', 10),
                     email=random_string('email', 10),
-                    mobilephone=random_string('mobile', 10),
+                    mobilephone=random_string('mobilephone', 10),
                     homephone=random_string('home', 10),
                     secondaryphone=random_string('phone2', 10))]
 
