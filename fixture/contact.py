@@ -67,7 +67,7 @@ class ContactHelper:
     def delete_contact_by_id(self, id):
         wd = self.app.wd
         self.app.open_homepage()
-        wd.find_element_by_name("selected[]")[index].click()
+        wd.find_element_by_css_selector("input[value='%s']" % id).click()
         # confirm delete
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         # accept alert OK
