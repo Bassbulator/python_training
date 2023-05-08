@@ -1,5 +1,4 @@
 import re
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.alert import Alert
@@ -46,7 +45,7 @@ class ContactHelper:
 
     def open_contact_page(self):
         wd = self.app.wd
-        if not (wd.current_url.endswith("http://localhost/addressbook/") and len(
+        if not (wd.current_url.endswith(self.app.base_url) and len(
                 wd.find_elements_by_name("MainForm")) > 0):
             wd.find_element_by_link_text("home").click()
 
