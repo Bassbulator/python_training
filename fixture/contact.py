@@ -89,9 +89,23 @@ class ContactHelper:
         self.return_homepage()
         self.contact_cache = None
 
+    def edit_contact_by_id(self, id, new_contact_data):
+        wd = self.app.wd
+        self.app.open_homepage()
+        self.select_contact_by_id(id)
+        self.fill_contact_form(new_contact_data)
+        # click by confirm button
+        wd.find_element_by_name("update").click()
+        self.return_homepage()
+        self.contact_cache = None
+
     def select_contact_by_index(self, index):
         wd = self.app.wd
         wd.find_elements_by_xpath("//img[@alt='Edit']")[index].click()
+
+    def select_contact_by_id(self, id):
+        wd = self.app.wd
+        wd.find_element_by_id(f"{id}").click()
 
     def change_field_value(self, field_name, text):
         wd = self.app.wd
@@ -125,7 +139,8 @@ class ContactHelper:
                 all_phones = cells[5].text
                 all_emails = cells[4].text
                 self.contact_cache.append(Contact(firstname=firstname, lastname=lastname, id=id,
-                                                  all_phones_from_home_page=all_phones, all_emails_from_home_page=all_emails))
+                                                  all_phones_from_home_page=all_phones,
+                                                  all_emails_from_home_page=all_emails))
         return list(self.contact_cache)
 
     def open_contact_to_edit_by_index(self, index):
